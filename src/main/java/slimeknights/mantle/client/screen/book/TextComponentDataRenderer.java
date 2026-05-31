@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TextComponentDataRenderer {
-  private static final float DEFAULT_TEXT_SCALE = 0.82f;
+  private static final float DEFAULT_TEXT_SCALE = 0.78f;
   private static final float MIN_AUTO_SCALE = 0.75f;
 
   /**

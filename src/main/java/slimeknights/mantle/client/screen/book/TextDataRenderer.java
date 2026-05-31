@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class TextDataRenderer {
-  private static final float DEFAULT_TEXT_SCALE = 0.82f;
+  private static final float DEFAULT_TEXT_SCALE = 0.78f;
   private static final float MIN_AUTO_SCALE = 0.75f;
 
   /** Gets a font renderer, falling back to the active client font for book pre-layout. */

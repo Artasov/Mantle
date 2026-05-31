@@ -113,33 +113,44 @@ public class ContentListing extends PageContent {
     // 16 gives space for the bottom and ensures a round number, yOff ensures the top is not counted
     int columnHeight = getColumnHeight(yOff);
 
-    // determine how wide we can make each column, support up to 3
+    boolean needsWiderColumns = this.entries.size() > 2 && this.entries.stream()
+      .flatMap(List::stream)
+      .anyMatch(entry -> book.getFontRenderer().width((entry.bold ? "" : "- ") + entry.getText()) > BookScreen.PAGE_WIDTH / 3);
+    List<List<TextData>> renderEntries = this.entries;
+    if (needsWiderColumns) {
+      List<TextData> flattened = new ArrayList<>();
+      this.entries.forEach(flattened::addAll);
+      renderEntries = List.of(flattened);
+    }
+
+    // determine how wide we can make each column
     int width = BookScreen.PAGE_WIDTH;
-    int finalColumns = this.entries.size();
+    int maxColumns = needsWiderColumns ? 2 : 3;
+    int finalColumns = renderEntries.size();
     int entriesPerColumn = columnHeight / LINE_HEIGHT;
-    if (finalColumns < 3) {
-      for (List<TextData> column : this.entries) {
+    if (finalColumns < maxColumns) {
+      for (List<TextData> column : renderEntries) {
         int totalEntries = column.size();
         while (totalEntries > entriesPerColumn) {
           finalColumns++;
-          if (finalColumns == 3) {
+          if (finalColumns == maxColumns) {
             break;
           }
           totalEntries -= entriesPerColumn;
         }
       }
     }
-    if (finalColumns > 3) {
-      finalColumns = 3;
+    if (finalColumns > maxColumns) {
+      finalColumns = maxColumns;
     }
     width /= finalColumns;
 
     int x = 0;
     int y = 0;
-    for (List<TextData> column : this.entries) {
+    for (List<TextData> column : renderEntries) {
       // add each page to the column
       for (TextData data : column) {
-        if (y >= columnHeight) {
+        if (y >= columnHeight && x + width < BookScreen.PAGE_WIDTH) {
           x += width;
           y = 0;
         }
@@ -154,7 +165,7 @@ public class ContentListing extends PageContent {
             height = TextDataRenderer.getLinesForString(text, "", width, "- ", parent.parent.parent.getFontRenderer()) * LINE_HEIGHT;
           }
           // if the last entry is too tall, move it to the next column. But only if not at the start to prevent double relocation.
-          if (y > 0 && y + height > columnHeight) {
+          if (y > 0 && y + height > columnHeight && x + width < BookScreen.PAGE_WIDTH) {
             x += width;
             y = 0;
           }
@@ -163,7 +174,9 @@ public class ContentListing extends PageContent {
         }
       }
       // reset column
-      x += width;
+      if (x + width < BookScreen.PAGE_WIDTH) {
+        x += width;
+      }
       y = 0;
     }
   }

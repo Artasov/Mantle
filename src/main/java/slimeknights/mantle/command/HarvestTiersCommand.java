@@ -69,9 +69,9 @@ public class HarvestTiersCommand {
         TagKey<Block> tag = tier.getIncorrectBlocksForDrops();
         ResourceLocation id = ResourceLocation.withDefaultNamespace(tier.toString().toLowerCase(java.util.Locale.ROOT));
         if (tag != null) {
-          output.append(Component.translatable("command.mantle.harvest_tiers.tag", id, getTagComponent(tag)));
+          output.append(Component.translatable("command.mantle.harvest_tiers.tag", id.toString(), getTagComponent(tag)));
         } else {
-          output.append(Component.translatable("command.mantle.harvest_tiers.no_tag", id));
+          output.append(Component.translatable("command.mantle.harvest_tiers.no_tag", id.toString()));
         }
       }
     }

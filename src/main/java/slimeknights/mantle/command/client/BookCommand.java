@@ -364,7 +364,7 @@ public class BookCommand {
   public static void bookNotFound(ResourceLocation book) {
     Player player = Minecraft.getInstance().player;
     if (player != null) {
-      player.displayClientMessage(Component.translatable(BOOK_NOT_FOUND, book).withStyle(ChatFormatting.RED), false);
+      player.displayClientMessage(Component.translatable(BOOK_NOT_FOUND, book.toString()).withStyle(ChatFormatting.RED), false);
     }
   }
 }

@@ -11,7 +11,6 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.world.level.storage.LevelResource;
-import net.neoforged.neoforge.common.crafting.CraftingHelper;
 import net.neoforged.neoforge.common.conditions.FalseCondition;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.fml.ModList;
@@ -69,16 +68,16 @@ public class GeneratePackHelper {
     }
   }
 
-  /** Saves a JSON that removes the given resource using forge conditions */
+  /** Saves a JSON that removes the given resource using conditions */
   public static boolean saveConditionRemove(Path path, String conditionKey) {
     JsonObject json = new JsonObject();
     json.add(conditionKey, slimeknights.mantle.recipe.condition.ConditionHelper.serialize(new ICondition[]{FalseCondition.INSTANCE}));
     return saveJson(json, path);
   }
 
-  /** Saves a JSON that removes the given resource using forge conditions */
+  /** Saves a JSON that removes the given resource using NeoForge conditions */
   public static boolean saveConditionRemove(Path path) {
-    return saveConditionRemove(path, "forge:conditions");
+    return saveConditionRemove(path, "neoforge:conditions");
   }
 
   /** Creates a mcmeta to make a valid pack */

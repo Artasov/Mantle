@@ -22,7 +22,7 @@ import java.util.function.Function;
 public enum NBTLoadable implements RecordLoadable<CompoundTag> {
   /** Disallows reading NBT from a string in the Forge style*/
   DISALLOW_STRING,
-  /** Allows reading NBT from a string in the forge style */
+  /** Allows reading NBT from a string */
   ALLOW_STRING;
 
   @Override

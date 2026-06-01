@@ -237,7 +237,7 @@ public class Mantle {
   }
 
   /**
-   * Gets a resource location for the common namespace, which is "forge" for 1.20 and "c" for 1.21.
+   * Gets a resource location for the common tag namespace.
    * @param name  Name
    * @return  Resource location instance
    */

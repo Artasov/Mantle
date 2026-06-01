@@ -29,7 +29,7 @@ public class FluidObject<F extends Fluid> implements Supplier<F>, ItemLike, IdAw
   @Getter @Nonnull
   protected final ResourceLocation id;
 
-  /** Tag in the forge namespace, crafting equivalence */
+  /** Tag in the common namespace, crafting equivalence */
   @Getter @Nullable
   protected final TagKey<Fluid> commonTag;
   private final Supplier<? extends FluidType> type;

@@ -12,13 +12,13 @@ import net.minecraft.world.level.storage.loot.functions.LootItemFunctions;
 import slimeknights.mantle.data.JsonCodec.GsonCodec;
 import slimeknights.mantle.data.loadable.common.IngredientLoadable;
 
-/** This class contains codecs for various vanilla things that we need to use in codecs. Typically the reason is forge pre-emptively moved a thing to codecs before vanilla did. */
+/** This class contains codecs for various vanilla things that we need to use in codecs. */
 public class MantleCodecs {
   /** Codec for loot pool entries */
   public static final Codec<LootPoolEntryContainer> LOOT_ENTRY = LootPoolEntries.CODEC;
   /** Codec for loot pool entries */
   public static final Codec<LootItemFunction[]> LOOT_FUNCTIONS = LootItemFunctions.ROOT_CODEC.listOf().xmap(list -> list.toArray(new LootItemFunction[0]), Arrays::asList);
-  /** Codec for ingredients, handling forge ingredient types */
+  /** Codec for ingredients */
   public static final Codec<Ingredient> INGREDIENT = new JsonCodec<>() {
     @Override
     public Ingredient deserialize(JsonElement element, DynamicOps<?> ops) {

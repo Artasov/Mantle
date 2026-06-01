@@ -12,7 +12,7 @@ import slimeknights.mantle.recipe.condition.ConditionHelper;
 
 import java.lang.reflect.Type;
 
-/**  Serializer for a forge condition. */
+/**  Serializer for a NeoForge condition. */
 public class ConditionSerializer implements JsonDeserializer<ICondition>, JsonSerializer<ICondition> {
   public static final ConditionSerializer INSTANCE = new ConditionSerializer();
 

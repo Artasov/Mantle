@@ -100,7 +100,7 @@ public class ItemStackLoadable {
     return loadable.validate(NOT_EMPTY);
   }
 
-  /** Loadable for an item stack with NBT, requires special logic due to forges share tags */
+  /** Loadable for an item stack with NBT */
   private enum NBTStack implements RecordLoadable<ItemStack> {
     /** Reads count from JSON */
     READ_COUNT,

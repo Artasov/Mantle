@@ -137,7 +137,7 @@ public abstract class FluidOutput implements Supplier<FluidStack> {
     return fromStack(FluidStack.OPTIONAL_STREAM_CODEC.decode((RegistryFriendlyByteBuf) buffer));
   }
 
-  /** Class for an output that is just an item, simplifies NBT for serializing as vanilla forces NBT to be set for tools and forge goes through extra steps when NBT is set */
+  /** Class for an output that is just an item, simplifies NBT for serializing as vanilla forces NBT to be set for tools */
   @RequiredArgsConstructor
   private static class OfFluid extends FluidOutput {
     private final Fluid fluid;
